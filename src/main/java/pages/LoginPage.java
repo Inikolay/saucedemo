@@ -5,7 +5,7 @@ import com.microsoft.playwright.Page;
 
 public class LoginPage {
 
-    private Page page;
+    private final Page page;
 
     public LoginPage(Page page) {
         this.page = page;
@@ -15,7 +15,7 @@ public class LoginPage {
         return page.locator("#user-name");
     }
 
-    public Locator userPasswordInput() {
+    public Locator passwordInput() {
         return page.locator("#password");
     }
 
