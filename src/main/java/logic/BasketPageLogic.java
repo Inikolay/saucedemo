@@ -1,18 +1,18 @@
 package logic;
 
 import com.microsoft.playwright.Page;
-import pages.CartPage;
+import pages.BasketPage;
 
 
-public class CartPageLogic {
+public class BasketPageLogic {
 
-    private final CartPage cartPage;
+    private final BasketPage cartPage;
 
-    public CartPageLogic(Page page) {
-        this.cartPage = new CartPage(page);
+    public BasketPageLogic(Page page) {
+        this.cartPage = new BasketPage(page);
     }
 
-    public CartPageLogic checkIsVisibleItemInTheCart(){
+    public BasketPageLogic checkIsVisibleItemInTheCart(){
         cartPage.itemCart().isVisible();
         return this;
     }
@@ -22,7 +22,7 @@ public class CartPageLogic {
         return new AddressPageLogic(cartPage.buttonCheckout().page());
     }
 
-    public CartPageLogic clickButtonRemoveItem(){
+    public BasketPageLogic clickButtonRemoveItem(){
         cartPage.buttonRemove().click();
         cartPage.itemCart().isDisabled();
         return this;

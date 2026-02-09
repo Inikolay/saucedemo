@@ -2,6 +2,7 @@ import jdk.jfr.Description;
 import logic.LoginPageLogic;
 import logic.MainPageLogic;
 
+import logic.ProductCartPageLogic;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -9,11 +10,13 @@ import org.testng.annotations.Test;
 public class LoginTestPositive extends BaseTest {
 
     private LoginPageLogic loginPageLogic;
+    private ProductCartPageLogic productCartPageLogic;
     private String url = "https://www.saucedemo.com";
 
     @BeforeMethod
     public void initPageLogic() {
         loginPageLogic = new LoginPageLogic(page);
+        productCartPageLogic = new ProductCartPageLogic(page);
     }
 
     @Test()
@@ -22,7 +25,7 @@ public class LoginTestPositive extends BaseTest {
         page.navigate(url);
         MainPageLogic mainPage = loginPageLogic.enterUsername("standard_user")
                 .enterUserPasswordInput("secret_sauce")
-                .clickLoginButton()
-                .checkIsVisibleItemBlocks();
+                .clickLoginButton();
+        productCartPageLogic.checkIsVisibleItemBlocks();
     }
 }

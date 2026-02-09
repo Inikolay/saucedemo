@@ -4,10 +4,10 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
 
-public class CartPage {
+public class BasketPage {
     private final Page page;
 
-    public CartPage(Page page) {
+    public BasketPage(Page page) {
         this.page = page;
     }
 

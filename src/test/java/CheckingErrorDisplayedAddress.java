@@ -1,8 +1,5 @@
 import jdk.jfr.Description;
-import logic.AddressPageLogic;
-import logic.HeaderLogic;
-import logic.LoginPageLogic;
-import logic.MainPageLogic;
+import logic.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -11,6 +8,7 @@ public class CheckingErrorDisplayedAddress extends BaseTest {
     private LoginPageLogic loginPageLogic;
     private HeaderLogic headerLogic;
     private AddressPageLogic addressPageLogic;
+    private ProductCartPageLogic productCartPageLogic;
     private String url = "https://www.saucedemo.com";
 
     @BeforeMethod
@@ -18,6 +16,7 @@ public class CheckingErrorDisplayedAddress extends BaseTest {
         loginPageLogic = new LoginPageLogic(page);
         headerLogic = new HeaderLogic(page);
         addressPageLogic = new AddressPageLogic(page);
+        productCartPageLogic = new ProductCartPageLogic(page);
     }
 
     @Test
@@ -26,8 +25,8 @@ public class CheckingErrorDisplayedAddress extends BaseTest {
         page.navigate(url);
         MainPageLogic mainPage = loginPageLogic.enterUsername("standard_user")
                 .enterUserPasswordInput("secret_sauce")
-                .clickLoginButton()
-                .addItemBackpackToCard();
+                .clickLoginButton();
+        productCartPageLogic.addItemBackpackToCard();
         headerLogic.checkIsVisibleQuantityGoodsBasket()
                 .clickButtonCart()
                 .checkIsVisibleItemInTheCart()

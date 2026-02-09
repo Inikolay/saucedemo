@@ -27,9 +27,9 @@ public class HeaderLogic {
         return this;
     }
 
-    public CartPageLogic clickButtonCart(){
+    public BasketPageLogic clickButtonCart(){
         headerPage.buttonCart().click();
-        return new CartPageLogic(headerPage.buttonCart().page());
+        return new BasketPageLogic(headerPage.buttonCart().page());
     }
 
     public HeaderLogic checkIsVisibleProductsText(){
