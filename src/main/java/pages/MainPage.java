@@ -1,15 +1,17 @@
 package pages;
 
 import com.microsoft.playwright.Page;
-import jdk.internal.org.xml.sax.Locator;
+import com.microsoft.playwright.Locator;
 
 public class MainPage {
 
-    Page page;
+    private Page page;
 
-    private final String itemsBlock = "#inventory_container";
+    public Locator itemsBlock() {
+        return page.locator("#inventory_container");
+    }
 
     public Locator buyButton(String id) {
-        return (Locator) page.locator("#" + id);
+        return page.locator("#" + id);
     }
 }
