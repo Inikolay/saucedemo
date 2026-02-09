@@ -7,6 +7,10 @@ public class MainPage {
 
     private Page page;
 
+    public MainPage(Page page) {
+        this.page = page;
+    }
+
     public Locator itemsBlock() {
         return page.locator("#inventory_container");
     }
