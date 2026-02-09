@@ -1,29 +1,39 @@
 package logic;
 
 import com.microsoft.playwright.Page;
-import pages.Header;
+import pages.HeaderPage;
 
 public class HeaderLogic {
 
-    private final Header header;
+    private final HeaderPage headerPage;
 
     public HeaderLogic(Page page) {
-        this.header = new Header(page);
+        this.headerPage = new HeaderPage(page);
     }
 
     public String getQuantityGoodsBasket() {
-        return header.quantityGoodsBasket().textContent();
+        return headerPage.quantityGoodsBasket().textContent();
     }
 
     public HeaderLogic checkIsVisibleQuantityGoodsBasket(){
-        if (!header.quantityGoodsBasket().isVisible()) {
+        if (!headerPage.quantityGoodsBasket().isVisible()) {
             throw new AssertionError("Quantity goods basket should be visible");
         }
         return this;
     }
 
     public HeaderLogic checkIsNotVisibleQuantityGoodsBasket(){
-        header.quantityGoodsBasket().isDisabled();
+        headerPage.quantityGoodsBasket().isHidden();
+        return this;
+    }
+
+    public CartPageLogic clickButtonCart(){
+        headerPage.buttonCart().click();
+        return new CartPageLogic(headerPage.buttonCart().page());
+    }
+
+    public HeaderLogic checkIsVisibleProductsText(){
+        headerPage.productsText().isVisible();
         return this;
     }
 }

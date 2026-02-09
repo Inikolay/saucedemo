@@ -4,8 +4,7 @@ import logic.MainPageLogic;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
-public class CheckingOrderCreation extends BaseTest {
+public class ProductRemovalCheck extends BaseTest{
 
     private LoginPageLogic loginPageLogic;
     private HeaderLogic headerLogic;
@@ -18,24 +17,16 @@ public class CheckingOrderCreation extends BaseTest {
     }
 
     @Test
-    public void testLoginPositive() {
+    public void testProductRemovalCheck() {
         page.navigate(url);
         MainPageLogic mainPage = loginPageLogic.enterUsername("standard_user")
                 .enterUserPasswordInput("secret_sauce")
                 .clickLoginButton()
                 .addItemBackpackToCard();
-        headerLogic.checkIsVisibleQuantityGoodsBasket()
-                .clickButtonCart()
-                .checkIsVisibleItemInTheCart()
-                .clickButtonCheckout()
-                .enterFirstName("Nikolay")
-                .enterLastName("Test")
-                .enterPostalCode("66059")
-                .clickButtonContinue()
-                .checkIsVisibleItemBlock()
-                .clickButtonFinish()
-                .checkIsVisibleImageSuccessOrder()
-                .clickButtonBackHome();
-        headerLogic.checkIsVisibleProductsText();
+        headerLogic.checkIsVisibleQuantityGoodsBasket();
+        mainPage.clickButtonRemove();
+        headerLogic.checkIsNotVisibleQuantityGoodsBasket();
+        mainPage.addItemBackpackToCard()
+                .checkIsNotVisibleItemBlocks();
     }
 }

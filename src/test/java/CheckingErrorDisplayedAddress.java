@@ -1,24 +1,28 @@
+import jdk.jfr.Description;
+import logic.AddressPageLogic;
 import logic.HeaderLogic;
 import logic.LoginPageLogic;
 import logic.MainPageLogic;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
-public class CheckingOrderCreation extends BaseTest {
+public class CheckingErrorDisplayedAddress extends BaseTest {
 
     private LoginPageLogic loginPageLogic;
     private HeaderLogic headerLogic;
+    private AddressPageLogic addressPageLogic;
     private String url = "https://www.saucedemo.com";
 
     @BeforeMethod
     public void initPageLogic() {
         loginPageLogic = new LoginPageLogic(page);
         headerLogic = new HeaderLogic(page);
+        addressPageLogic = new AddressPageLogic(page);
     }
 
     @Test
-    public void testLoginPositive() {
+    @Description("Checking if an error is displayed on the address page")
+    public void testCheckingIfAnErrorIsDisplayedOnTheAddressPage() {
         page.navigate(url);
         MainPageLogic mainPage = loginPageLogic.enterUsername("standard_user")
                 .enterUserPasswordInput("secret_sauce")
@@ -28,14 +32,7 @@ public class CheckingOrderCreation extends BaseTest {
                 .clickButtonCart()
                 .checkIsVisibleItemInTheCart()
                 .clickButtonCheckout()
-                .enterFirstName("Nikolay")
-                .enterLastName("Test")
-                .enterPostalCode("66059")
-                .clickButtonContinue()
-                .checkIsVisibleItemBlock()
-                .clickButtonFinish()
-                .checkIsVisibleImageSuccessOrder()
-                .clickButtonBackHome();
-        headerLogic.checkIsVisibleProductsText();
+                .clickButtonContinue();
+        addressPageLogic.isVisibleErrorMessageContainerError();
     }
 }

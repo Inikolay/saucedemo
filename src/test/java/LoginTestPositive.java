@@ -23,6 +23,6 @@ public class LoginTestPositive extends BaseTest {
         MainPageLogic mainPage = loginPageLogic.enterUsername("standard_user")
                 .enterUserPasswordInput("secret_sauce")
                 .clickLoginButton()
-                .checkIsVisibleCodeblocks();
+                .checkIsVisibleItemBlocks();
     }
 }
