@@ -12,10 +12,10 @@ public class MainPage {
     }
 
     public Locator itemsBlock() {
-        return page.locator("#inventory_container");
+        return page.locator(".inventory_container");
     }
 
     public Locator buyButton(String id) {
-        return page.locator("#" + id);
+        return page.locator("" + id);
     }
 }

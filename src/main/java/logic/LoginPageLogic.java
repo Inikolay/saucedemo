@@ -1,6 +1,7 @@
-package logics;
+package logic;
 
 import com.microsoft.playwright.Page;
+
 import pages.LoginPage;
 
 public class LoginPageLogic {
