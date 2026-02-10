@@ -22,7 +22,17 @@ public class LoginPageLogic {
         return this;
     }
 
-    public MainPageLogic clickLoginButton() {
+    public LoginPageLogic clickLoginButton() {
+        loginPage.loginButton().click();
+        return this;
+    }
+
+    public LoginPageLogic checkIsVisibleErrorMessageForLogin(){
+        loginPage.errorMessageForLogin().isVisible();
+        return this;
+    }
+
+    public MainPageLogic clickLoginButtonGoToMainPage() {
         loginPage.loginButton().click();
         return new MainPageLogic(loginPage.loginButton().page());
     }

@@ -23,13 +23,17 @@ public class ProductCartPageLogic {
         return this;
     }
 
-    public ProductCartPageLogic addItemBackpackToCard(){
+    public ProductCartPageLogic addItemBackpackToCard() {
         productCartPage.buyButton("#add-to-cart-sauce-labs-backpack").click();
         return this;
     }
 
-    public ProductCartPageLogic clickButtonRemove(){
+    public ProductCartPageLogic clickButtonRemove() {
         productCartPage.removeItem().click();
         return this;
+    }
+
+    public String getPriceProductCartPage() {
+        return productCartPage.priceProductCartPage().innerText();
     }
 }

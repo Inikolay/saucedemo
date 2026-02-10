@@ -21,4 +21,8 @@ public class ProductCartPage {
     public Locator buyButton(String id) {
         return page.locator("" + id);
     }
+
+    public Locator priceProductCartPage(){
+        return page.locator("div[data-test='inventory-item-price']").first();
+    }
 }

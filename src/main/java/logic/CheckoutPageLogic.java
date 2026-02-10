@@ -20,4 +20,8 @@ public class CheckoutPageLogic {
         checkoutPage.buttonFinish().click();
         return new SuccessPageLogic(checkoutPage.buttonFinish().page());
     }
+
+    public String getPriceProductCheckoutPage(){
+        return checkoutPage.priceCheckoutPage().innerText();
+    }
 }

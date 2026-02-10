@@ -21,6 +21,9 @@ public class BasketPage {
 
     public Locator buttonRemove() {
         return page.locator("#remove-sauce-labs-backpack");
+    }
 
+    public Locator priceProductBasketPage(){
+        return page.locator("div[data-test='inventory-item-price']");
     }
 }

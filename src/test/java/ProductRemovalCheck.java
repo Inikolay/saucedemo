@@ -1,3 +1,4 @@
+import jdk.jfr.Description;
 import logic.HeaderLogic;
 import logic.LoginPageLogic;
 import logic.MainPageLogic;
@@ -5,12 +6,13 @@ import logic.ProductCartPageLogic;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static base.TestConfig.*;
+
 public class ProductRemovalCheck extends BaseTest{
 
     private LoginPageLogic loginPageLogic;
     private HeaderLogic headerLogic;
     private ProductCartPageLogic productCartPageLogic;
-    private String url = "https://www.saucedemo.com";
 
     @BeforeMethod
     public void initPageLogic() {
@@ -20,11 +22,12 @@ public class ProductRemovalCheck extends BaseTest{
     }
 
     @Test
-    public void testProductRemovalCheck() {
-        page.navigate(url);
-        MainPageLogic mainPage = loginPageLogic.enterUsername("standard_user")
-                .enterUserPasswordInput("secret_sauce")
-                .clickLoginButton();
+    @Description("Check product removal test")
+    public void testCheckProductRemovalTest() {
+        page.navigate(URL);
+        MainPageLogic mainPage = loginPageLogic.enterUsername(USER_NAME)
+                .enterUserPasswordInput(PASSWORD)
+                .clickLoginButtonGoToMainPage();
         productCartPageLogic.addItemBackpackToCard();
         headerLogic.checkIsVisibleQuantityGoodsBasket();
         productCartPageLogic.clickButtonRemove();

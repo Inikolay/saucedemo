@@ -22,4 +22,8 @@ public class LoginPage {
     public Locator loginButton() {
         return page.locator("#login-button");
     }
+
+    public Locator errorMessageForLogin(){
+        return page.locator("h3[data-test='error']");
+    }
 }

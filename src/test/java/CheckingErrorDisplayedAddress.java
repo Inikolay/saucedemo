@@ -3,13 +3,14 @@ import logic.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static base.TestConfig.*;
+
 public class CheckingErrorDisplayedAddress extends BaseTest {
 
     private LoginPageLogic loginPageLogic;
     private HeaderLogic headerLogic;
     private AddressPageLogic addressPageLogic;
     private ProductCartPageLogic productCartPageLogic;
-    private String url = "https://www.saucedemo.com";
 
     @BeforeMethod
     public void initPageLogic() {
@@ -22,10 +23,10 @@ public class CheckingErrorDisplayedAddress extends BaseTest {
     @Test
     @Description("Checking if an error is displayed on the address page")
     public void testCheckingIfAnErrorIsDisplayedOnTheAddressPage() {
-        page.navigate(url);
-        MainPageLogic mainPage = loginPageLogic.enterUsername("standard_user")
-                .enterUserPasswordInput("secret_sauce")
-                .clickLoginButton();
+        page.navigate(URL);
+        MainPageLogic mainPage = loginPageLogic.enterUsername(USER_NAME)
+                .enterUserPasswordInput(PASSWORD)
+                .clickLoginButtonGoToMainPage();
         productCartPageLogic.addItemBackpackToCard();
         headerLogic.checkIsVisibleQuantityGoodsBasket()
                 .clickButtonCart()

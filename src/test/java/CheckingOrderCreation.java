@@ -1,3 +1,4 @@
+import jdk.jfr.Description;
 import logic.HeaderLogic;
 import logic.LoginPageLogic;
 import logic.MainPageLogic;
@@ -5,13 +6,14 @@ import logic.ProductCartPageLogic;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static base.TestConfig.*;
+
 
 public class CheckingOrderCreation extends BaseTest {
 
     private LoginPageLogic loginPageLogic;
     private HeaderLogic headerLogic;
     private ProductCartPageLogic productCartPageLogic;
-    private String url = "https://www.saucedemo.com";
 
     @BeforeMethod
     public void initPageLogic() {
@@ -21,19 +23,20 @@ public class CheckingOrderCreation extends BaseTest {
     }
 
     @Test
-    public void testLoginPositive() {
-        page.navigate(url);
-        MainPageLogic mainPage = loginPageLogic.enterUsername("standard_user")
-                .enterUserPasswordInput("secret_sauce")
-                .clickLoginButton();
+    @Description("Checking order creation")
+    public void testCheckingOrderCreation() {
+        page.navigate(URL);
+        MainPageLogic mainPage = loginPageLogic.enterUsername(USER_NAME)
+                .enterUserPasswordInput(PASSWORD)
+                .clickLoginButtonGoToMainPage();
         productCartPageLogic.addItemBackpackToCard();
         headerLogic.checkIsVisibleQuantityGoodsBasket()
                 .clickButtonCart()
                 .checkIsVisibleItemInTheCart()
                 .clickButtonCheckout()
-                .enterFirstName("Nikolay")
-                .enterLastName("Test")
-                .enterPostalCode("66059")
+                .enterFirstName(FIRST_NAME)
+                .enterLastName(LAST_NAME)
+                .enterPostalCode(POSTAL_CODE)
                 .clickButtonContinue()
                 .checkIsVisibleItemBlock()
                 .clickButtonFinish()

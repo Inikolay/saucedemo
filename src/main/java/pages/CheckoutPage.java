@@ -16,4 +16,8 @@ public class CheckoutPage {
     public Locator buttonFinish(){
         return page.locator("[data-test='finish']");
     }
+
+    public Locator priceCheckoutPage(){
+        return page.locator("div[data-test='inventory-item-price']");
+    }
 }
