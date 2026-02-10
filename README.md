@@ -4,3 +4,5 @@ In my test automation project, I used:
 	•	Playwright for UI automation
 	•	TestNG as the test framework
 	•	Page Object Model (POM) for architecture
+
+I did everything in the branch: main
