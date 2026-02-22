@@ -1,12 +1,15 @@
-import jdk.jfr.Description;
+package firstTest;
+
+import io.qameta.allure.Description;
 import logic.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+
 import static base.TestConfig.*;
 
-public class CheckingCostItems extends BaseTest {
+public class CheckingCostItems extends BasePlaywrightTest {
 
     private LoginPageLogic loginPageLogic;
     private HeaderLogic headerLogic;

@@ -1,28 +1,32 @@
-import jdk.jfr.Description;
-import logic.*;
+package firstTest;
+
+import io.qameta.allure.Description;
+import logic.HeaderLogic;
+import logic.LoginPageLogic;
+import logic.MainPageLogic;
+import logic.ProductCartPageLogic;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static base.TestConfig.*;
 
-public class CheckingErrorDisplayedAddress extends BaseTest {
+
+public class CheckingOrderCreation extends BasePlaywrightTest {
 
     private LoginPageLogic loginPageLogic;
     private HeaderLogic headerLogic;
-    private AddressPageLogic addressPageLogic;
     private ProductCartPageLogic productCartPageLogic;
 
     @BeforeMethod
     public void initPageLogic() {
         loginPageLogic = new LoginPageLogic(page);
         headerLogic = new HeaderLogic(page);
-        addressPageLogic = new AddressPageLogic(page);
         productCartPageLogic = new ProductCartPageLogic(page);
     }
 
     @Test
-    @Description("Checking if an error is displayed on the address page")
-    public void testCheckingIfAnErrorIsDisplayedOnTheAddressPage() {
+    @Description("Checking order creation")
+    public void testCheckingOrderCreation() {
         page.navigate(URL);
         MainPageLogic mainPage = loginPageLogic.enterUsername(USER_NAME)
                 .enterUserPasswordInput(PASSWORD)
@@ -32,7 +36,14 @@ public class CheckingErrorDisplayedAddress extends BaseTest {
                 .clickButtonCart()
                 .checkIsVisibleItemInTheCart()
                 .clickButtonCheckout()
-                .clickButtonContinue();
-        addressPageLogic.isVisibleErrorMessageContainerError();
+                .enterFirstName(FIRST_NAME)
+                .enterLastName(LAST_NAME)
+                .enterPostalCode(POSTAL_CODE)
+                .clickButtonContinue()
+                .checkIsVisibleItemBlock()
+                .clickButtonFinish()
+                .checkIsVisibleImageSuccessOrder()
+                .clickButtonBackHome();
+        headerLogic.checkIsNotVisibleQuantityGoodsBasket();
     }
 }

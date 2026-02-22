@@ -1,4 +1,6 @@
-import jdk.jfr.Description;
+package firstTest;
+
+import io.qameta.allure.Description;
 import logic.HeaderLogic;
 import logic.LoginPageLogic;
 import logic.MainPageLogic;
@@ -8,8 +10,7 @@ import org.testng.annotations.Test;
 
 import static base.TestConfig.*;
 
-
-public class CheckingOrderCreation extends BaseTest {
+public class ProductRemovalCheck extends BasePlaywrightTest {
 
     private LoginPageLogic loginPageLogic;
     private HeaderLogic headerLogic;
@@ -23,25 +24,17 @@ public class CheckingOrderCreation extends BaseTest {
     }
 
     @Test
-    @Description("Checking order creation")
-    public void testCheckingOrderCreation() {
+    @Description("Check product removal test")
+    public void testCheckProductRemovalTest() {
         page.navigate(URL);
         MainPageLogic mainPage = loginPageLogic.enterUsername(USER_NAME)
                 .enterUserPasswordInput(PASSWORD)
                 .clickLoginButtonGoToMainPage();
         productCartPageLogic.addItemBackpackToCard();
-        headerLogic.checkIsVisibleQuantityGoodsBasket()
-                .clickButtonCart()
-                .checkIsVisibleItemInTheCart()
-                .clickButtonCheckout()
-                .enterFirstName(FIRST_NAME)
-                .enterLastName(LAST_NAME)
-                .enterPostalCode(POSTAL_CODE)
-                .clickButtonContinue()
-                .checkIsVisibleItemBlock()
-                .clickButtonFinish()
-                .checkIsVisibleImageSuccessOrder()
-                .clickButtonBackHome();
+        headerLogic.checkIsVisibleQuantityGoodsBasket();
+        productCartPageLogic.clickButtonRemove();
         headerLogic.checkIsNotVisibleQuantityGoodsBasket();
+        productCartPageLogic.addItemBackpackToCard()
+                .checkIsNotVisibleItemBlocks();
     }
 }

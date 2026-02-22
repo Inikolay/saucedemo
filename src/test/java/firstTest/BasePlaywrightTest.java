@@ -1,3 +1,5 @@
+package firstTest;
+
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
@@ -6,7 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 
-public abstract class BaseTest {
+public abstract class BasePlaywrightTest {
     protected Playwright playwright;
     protected Browser browser;
     protected Page page;
@@ -15,7 +17,7 @@ public abstract class BaseTest {
     public void setUp() {
         playwright = Playwright.create();
         browser = playwright.chromium()
-                .launch(new BrowserType.LaunchOptions().setHeadless(false));
+                .launch(new BrowserType.LaunchOptions().setHeadless(true));
         page = browser.newPage();
     }
 
